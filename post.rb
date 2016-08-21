@@ -1,4 +1,12 @@
 class Post
+  def self.post_types
+    [Memo, Link, Task]
+  end
+
+  def self.create(type_index)
+    type_index -= 1
+    return post_types[type_index].new
+  end
 
   def initialize
     @created_at = Time.now
@@ -22,7 +30,7 @@ class Post
 
     file = File.new(file_path, "w:UTF-8")
 
-    for item in to_strings do
+    for item in to_string do
       file.puts  (item)
 
     end
